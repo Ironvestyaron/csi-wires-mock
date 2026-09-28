@@ -1,0 +1,8 @@
+{
+  "name": "csi-wires-mock",
+  "private": true,
+  "description": "Standalone mock of a CSI Wires queue and wire view. Not part of SessionTrust.",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
