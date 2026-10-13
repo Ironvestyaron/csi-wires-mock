@@ -2,6 +2,8 @@ const STORAGE_KEY = 'csi-wires-mock';
 const STORAGE_VERSION = '2';
 const VERSION_KEY = 'csi-wires-mock-version';
 const BANK_SENDER_ABA = '042102403';
+const BANK_LABEL = 'iBank';
+const SIGNED_IN_USER = 'Jon Iron';
 
 const CURRENCY_LABELS = {
   USD: 'USD - US Dollar',
@@ -168,11 +170,11 @@ function shell(content) {
       </aside>
       <div class="csi-main">
         <header class="csi-top">
-          <div class="csi-bank">First Southern National Bank - 312</div>
+          <div class="csi-bank">${esc(BANK_LABEL)}</div>
           <div class="csi-user">
             <span>Help</span>
             <span>Sign Out</span>
-            <strong>Jacob Carter</strong>
+            <strong>${esc(SIGNED_IN_USER)}</strong>
           </div>
         </header>
         <div class="csi-content">${content}</div>
@@ -239,7 +241,7 @@ function renderDetail(id) {
   if (!wire) {
     document.title = 'CSI Wire';
     app.innerHTML = `
-      <div class="bank-bar">First Southern National Bank - 312</div>
+      <div class="bank-bar">${esc(BANK_LABEL)}</div>
       <main class="page">
         <h1>Wire not found</h1>
         <p class="empty">No mock wire matches ${esc(id)}.</p>
@@ -472,7 +474,7 @@ function renderEditor(id) {
   if (id && !existing) {
     document.title = 'CSI Wire';
     app.innerHTML = `
-      <div class="bank-bar">First Southern National Bank - 312</div>
+      <div class="bank-bar">${esc(BANK_LABEL)}</div>
       <main class="page">
         <h1>Wire not found</h1>
         <a class="button secondary" href="#/">Back to wires</a>
@@ -497,7 +499,7 @@ function renderEditor(id) {
   document.title = existing ? `Edit wire ${existing.id}` : 'New wire';
 
   app.innerHTML = `
-    <div class="bank-bar">First Southern National Bank - 312</div>
+    <div class="bank-bar">${esc(BANK_LABEL)}</div>
     <main class="page">
       ${toolbar('Mock editor. This form is not the CSI wire view.', `
         <a class="button secondary" href="${existing ? `#/wires/${esc(encodeURIComponent(existing.id))}` : '#/'}">Cancel</a>
